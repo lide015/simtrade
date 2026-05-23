@@ -43,8 +43,11 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-if "GEMINI_API_KEY" in st.secrets and not os.environ.get("GEMINI_API_KEY"):
-    os.environ["GEMINI_API_KEY"] = st.secrets["GEMINI_API_KEY"]
+try:
+    if "GEMINI_API_KEY" in st.secrets and not os.environ.get("GEMINI_API_KEY"):
+        os.environ["GEMINI_API_KEY"] = st.secrets["GEMINI_API_KEY"]
+except Exception:
+    pass
 
 GREEN = "#16a34a"
 RED = "#dc2626"
