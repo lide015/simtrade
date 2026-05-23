@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "simtrade"
+version = "0.1.0"
+description = "Tier 4 simulated trading platform with active discovery"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "ccxt>=4.2.0",
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+    "pandas-ta>=0.3.14b0",
+    "scipy>=1.11.0",
+    "statsmodels>=0.14.0",
+    "apscheduler>=3.10.0",
+    "pyyaml>=6.0",
+    "tabulate>=0.9.0",
+]
+
+[project.optional-dependencies]
+ui = ["streamlit>=1.30.0", "plotly>=5.18.0"]
+llm = ["google-genai>=1.0.0"]
+dev = ["pytest>=7.4.0", "pytest-cov>=4.1.0", "ruff>=0.1.0"]
+
+[project.scripts]
+simtrade = "simtrade.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
